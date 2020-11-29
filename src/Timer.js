@@ -6,7 +6,15 @@ class Timer extends Component {
     color: "#" + Math.floor(Math.random() * 16777215).toString(16)
   };
 
-  // add your code here
+  // good place to add setInterval or setTimeout fn\s
+  componentDidMount() {
+    this.interval = setInterval(this.clockTick, 1000)
+  }
+
+  // MUST CLEAN UP! - bc intervals keep firing after component unmounts
+  componentWillUnmount() {
+    clearInterval(this.interval)
+  }
 
   render() {
     const { time, color } = this.state;
@@ -20,13 +28,14 @@ class Timer extends Component {
     );
   }
 
-  //clock functions
+  //clock functions - handles updating the state
   clockTick = () => {
     this.setState(prevState => ({
       time: prevState.time + 1
     }));
   };
 
+  // unmount
   stopClock = () => {
     clearInterval(this.interval);
   };

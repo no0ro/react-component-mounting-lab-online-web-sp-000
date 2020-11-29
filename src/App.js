@@ -2,24 +2,23 @@ import React, { Component } from 'react';
 
 import Timer from './Timer'
 
+
 class App extends Component {
+// The App component is keeping track of timers using an array of random ID numbers. 
+// This allows for easy removal and addition of Timer components.
 
   //no props being used here, so we can use the shorthand declaration of state
   state = {
     timerIDs: []
   }
 
-
-  //Your code here:
-
-
-
-
+  // dont use arrow fn for lifecycle meth bc want to exist on prototype chain, so no arror
+  componentDidMount() {
+    this.handleAddTimer()
+  }
 
 
-
-
-
+  
   // No need to modify anything in render or the class methods below
   // Unless, of course, you're curious about how it all works
   render() {
